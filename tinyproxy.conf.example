@@ -19,14 +19,7 @@ Allow 127.0.0.1
 ConnectPort 443
 ConnectPort 8443
 
-# Logging to stdout for container
-LogFile "/dev/stdout"
-LogLevel Info
-
 # Disable Via header to be less detectable
 DisableViaHeader Yes
 
 MaxClients 50
-MinSpareServers 2
-MaxSpareServers 5
-StartServers 3
