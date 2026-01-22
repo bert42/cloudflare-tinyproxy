@@ -8,7 +8,6 @@ services:
     image: cloudflare-tinyproxy:latest
     container_name: cloudflare-tinyproxy
     restart: unless-stopped
-    ports:
-      - "61234:61234"
+    network_mode: host
     volumes:
       - ./tinyproxy.conf:/etc/tinyproxy/tinyproxy.conf:ro,Z

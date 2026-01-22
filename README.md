@@ -23,9 +23,21 @@ cp podman-compose.example.yml podman-compose.yml
 Allow YOUR.PUBLIC.IP.HERE
 ```
 
-4. Build and run:
+4. Build and run (use host networking to avoid podman network issues):
 ```bash
-podman-compose up -d
+podman build -t cloudflare-tinyproxy .
+podman run -d --name cloudflare-tinyproxy --network=host \
+  -v ./tinyproxy.conf:/etc/tinyproxy/tinyproxy.conf:ro \
+  cloudflare-tinyproxy:latest
+```
+
+5. Open firewall for your IP:
+```bash
+# Replace YOUR.PUBLIC.IP with your actual IP from show-my-ip.sh
+iptables -I INPUT -p tcp -s YOUR.PUBLIC.IP --dport 61234 -j ACCEPT
+
+# Or with firewalld
+firewall-cmd --add-rich-rule='rule family="ipv4" source address="YOUR.PUBLIC.IP" port port="61234" protocol="tcp" accept'
 ```
 
 ### On your local machine
