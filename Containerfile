@@ -1,9 +1,7 @@
-FROM registry.access.redhat.com/ubi9/ubi-minimal
+FROM docker.io/library/alpine:3.21
 
-RUN microdnf install -y tinyproxy && microdnf clean all
+RUN apk add --no-cache tinyproxy
 
 EXPOSE 61234
-
-USER nobody
 
 CMD ["tinyproxy", "-d", "-c", "/etc/tinyproxy/tinyproxy.conf"]

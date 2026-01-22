@@ -1,8 +1,8 @@
 # Tinyproxy configuration for Cloudflare bypass
 # Copy to tinyproxy.conf and update Allow with your IP
 
-User nobody
-Group nobody
+User tinyproxy
+Group tinyproxy
 
 Port 61234
 Listen 0.0.0.0
