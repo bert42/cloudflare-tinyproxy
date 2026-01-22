@@ -1,0 +1,32 @@
+# Tinyproxy configuration for Cloudflare bypass
+# Copy to tinyproxy.conf and update Allow with your IP
+
+User nobody
+Group nobody
+
+Port 61234
+Listen 0.0.0.0
+BindSame yes
+
+Timeout 600
+
+# Allowed client IPs - add your public IP here
+# Use scripts/show-my-ip.sh to find your IP
+Allow 127.0.0.1
+# Allow YOUR.PUBLIC.IP.HERE
+
+# HTTPS tunneling ports
+ConnectPort 443
+ConnectPort 8443
+
+# Logging to stdout for container
+LogFile "/dev/stdout"
+LogLevel Info
+
+# Disable Via header to be less detectable
+DisableViaHeader Yes
+
+MaxClients 50
+MinSpareServers 2
+MaxSpareServers 5
+StartServers 3
