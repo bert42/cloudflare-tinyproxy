@@ -50,6 +50,29 @@ Launch a browser configured to use the proxy:
 Or configure manually:
 - HTTP Proxy: `your-remote-server.com:61234`
 
+## Extracting Cookies for CLI Tools
+
+After passing Cloudflare verification in the browser, you can extract cookies for use with CLI tools (like curl or custom applications).
+
+**Chrome:**
+1. Press F12 (DevTools)
+2. Go to **Application** tab
+3. Left sidebar → **Cookies** → select the site (e.g., `https://chaturbate.com`)
+4. Find `cf_clearance` row → copy the **Value**
+5. Also copy `sessionid` if you need authenticated access
+
+**Firefox:**
+1. Press F12 (DevTools)
+2. Go to **Storage** tab
+3. Left sidebar → **Cookies** → select the site
+4. Find `cf_clearance` → copy the value
+
+**Important:** The `cf_clearance` cookie is bound to:
+- The **IP address** (must match the server IP)
+- The **User-Agent** string (must match exactly when using the cookie)
+
+Cookies expire after a few hours and need to be refreshed when you start getting 403 errors again.
+
 ## Files
 
 - `Containerfile` - Container image definition
